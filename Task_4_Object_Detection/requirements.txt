@@ -1,0 +1,12 @@
+pandas
+numpy
+matplotlib
+seaborn
+opencv-python
+tqdm
+albumentations
+Pillow
+imagehash
+tensorflow
+umap-learn
+ultralytics
