@@ -100,6 +100,13 @@ Below is the performance comparison across different YOLOv8 variants trained on 
 - Minority classes improved after augmentation.    
 
 ---
+## Conclusion
+
+In this project, I explored building a pipeline to detect cows and bulls using YOLOv8, starting from dataset exploration to training and evaluating the model. I faced challenges like class imbalance and limited data, but I learned a lot about **data preprocessing, augmentation, and preparing the dataset properly**.
+
+The models didn’t get very high mAP scores, but looking at embeddings and visualizations helped me understand the dataset better. Next, I think adding more data, trying longer training, and experimenting with bigger YOLOv8 models could improve results.
+
+Overall, this was a great learning experience in **object detection**, and it gave me a good foundation to build more robust models for real-world use.
 
 ##  Usage
 
