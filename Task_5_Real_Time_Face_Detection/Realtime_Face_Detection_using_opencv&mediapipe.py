@@ -59,7 +59,7 @@ def draw_stylish_bbox(img, bbox, score, color=(0, 255, 0), l=30, t=5, rt=1):
 def main():
     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     if not cap.isOpened():
-        print("❌ Error: Could not open webcam.")
+        print(" Error: Could not open webcam.")
         return
 
     cap.set(3, 1280)
@@ -71,7 +71,7 @@ def main():
     while True:
         success, img = cap.read()
         if not success:
-            print("❌ Failed to grab frame.")
+            print(" Failed to grab frame.")
             break
 
         img = cv2.flip(img, 1)
@@ -102,4 +102,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
