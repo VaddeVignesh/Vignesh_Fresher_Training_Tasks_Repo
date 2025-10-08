@@ -1,0 +1,32 @@
+# Core Libraries
+numpy
+pandas
+matplotlib
+seaborn
+
+# Image Processing
+opencv-python
+Pillow
+
+# OCR Engines
+pytesseract
+easyocr
+transformers
+torch
+torchvision
+torchaudio
+
+# PDF & Table Extraction
+tabula-py
+pdf2image
+camelot-py
+
+# Utility
+tqdm
+scikit-learn
+
+# Visualization
+plotly
+
+# Optional (for Google Colab/Drive integrations)
+gdown
