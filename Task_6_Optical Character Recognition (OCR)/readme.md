@@ -25,7 +25,7 @@ The goal is to build a **multi-model OCR and layout analysis pipeline** that can
 
 ---
 
-## ⚙️ 1. Data Loading & Setup
+##  1. Data Loading & Setup
 
 - Downloaded The Dataset from Hugging Face  
 - Defined paths for images, annotations, and labels  
@@ -151,12 +151,3 @@ This Task evolved from basic OCR exploration into a **complete document understa
 
 The final pipeline can process complex PDFs and images efficiently, providing accurate text and layout extraction results.
 
----
-
-## 🛠️ Installation
-
-Clone the repository and install dependencies:
-```bash
-git clone https://github.com/<your-username>/OCR-Layout-Detection-Project.git
-cd OCR-Layout-Detection-Project
-pip install -r requirements.txt
