@@ -1,32 +1,56 @@
+# ============================
 # Core Libraries
+# ============================
 numpy
 pandas
 matplotlib
 seaborn
+plotly
+tqdm
+scikit-learn
 
+# ============================
 # Image Processing
+# ============================
 opencv-python
 Pillow
 
+# ============================
 # OCR Engines
+# ============================
 pytesseract
 easyocr
+paddleocr>=2.7.0
 transformers
 torch
 torchvision
 torchaudio
 
+# ============================
+# Layout Detection (YOLOv10)
+# ============================
+ultralytics>=8.2.0  # YOLOv10 compatible version
+
+# ============================
 # PDF & Table Extraction
+# ============================
 tabula-py
-pdf2image
 camelot-py
+pdf2image
+PyMuPDF
 
-# Utility
-tqdm
-scikit-learn
-
-# Visualization
-plotly
-
-# Optional (for Google Colab/Drive integrations)
+# ============================
+# Utility & Integrations
+# ============================
+requests
+nltk
 gdown
+
+# ============================
+# Jupyter / Colab Support
+# ============================
+notebook
+nbformat
+nbconvert
+ipython
+ipywidgets
