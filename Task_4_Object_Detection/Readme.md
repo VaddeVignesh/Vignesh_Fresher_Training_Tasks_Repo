@@ -108,10 +108,4 @@ The models didn’t get very high mAP scores, but looking at embeddings and visu
 
 Overall, this was a great learning experience in **object detection**, and it gave me a good foundation to build more robust models for real-world use.
 
-##  Usage
-
-### 1. Clone Repository
-```bash
-git clone https://github.com/<your-username>/cows-bulls-detection.git
-cd cows-bulls-detection
 
