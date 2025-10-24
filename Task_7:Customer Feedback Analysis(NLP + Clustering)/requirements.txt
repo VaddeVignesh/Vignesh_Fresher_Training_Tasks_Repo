@@ -1,0 +1,12 @@
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+wordcloud
+spacy
+nltk
+scikit-learn
+tensorflow
+umap-learn
+hdbscan
