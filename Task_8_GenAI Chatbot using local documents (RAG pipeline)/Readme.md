@@ -1,22 +1,26 @@
-#  AskMyPDF RAGBOT  
+# Gen AI RAG Chat Bot using Local Documents
 
-**AskMyPDF RAGBOT** is a smart chatbot built with **Streamlit** and a **Retrieval-Augmented Generation (RAG)** pipeline.  
+**Gen AI RAG Chat Bot using Local Documents** is a smart chatbot built with **Streamlit** and a **Retrieval-Augmented Generation (RAG)** pipeline.  
 It lets you upload PDFs and have a natural conversation with them — you ask questions, and it replies with context-aware, well-grounded answers directly from the document.
 
 ---
+## Task Preview
+![Task Preview](https://image2url.com/images/1761714183830-388ad1fe-d47e-48f6-9f1a-bf3866d4a450.png)
 
-##  Features  
 
--  **Upload Any PDF:** Drop in any document — research papers, manuals, policies, etc.  
--  **Understands Context:** It reads, splits, and organizes text intelligently for better retrieval.  
--  **Ask Anything:** You can query naturally, like “What’s the summary of chapter 3?” or “Who is the author mentioning here?”  
--  **Real-Time RAG Flow:** Combines retrieval + reranking + LLM generation seamlessly.  
--  **Modern UI:** Clean, dark Streamlit interface with animated gradient and chat-style messages.  
--  **Live Dashboard:** Sidebar shows insights like number of processed chunks and total queries.  
--  **Caching & State Handling:** Uses `st.session_state` and `@st.cache_resource` to optimize performance.  
--  **Answer Transparency:** Every response includes number of sources and latency details.
+## Features
+
+- **Upload Any PDF:** Drop in any document — research papers, manuals, policies, etc.  
+- **Understands Context:** It reads, splits, and organizes text intelligently for better retrieval.  
+- **Ask Anything:** You can query naturally, like “What’s the summary of chapter 3?” or “Who is the author mentioning here?”  
+- **Real-Time RAG Flow:** Combines retrieval + reranking + LLM generation seamlessly.  
+- **Modern UI:** Clean, dark Streamlit interface with animated gradient and chat-style messages.  
+- **Live Dashboard:** Sidebar shows insights like number of processed chunks and total queries.  
+- **Caching & State Handling:** Uses `st.session_state` and `@st.cache_resource` to optimize performance.  
+- **Answer Transparency:** Every response includes number of sources and latency details.
 
 ---
+
 ## Example Use Cases
 
 - **Research Assistants:** Summarize and analyze multiple academic papers quickly.  
@@ -24,7 +28,9 @@ It lets you upload PDFs and have a natural conversation with them — you ask qu
 - **Business Reports:** Identify key metrics, financial insights, or performance trends.  
 - **Training Manuals:** Retrieve specific definitions, processes, or instructional steps instantly.
 
-##  How It Works  
+---
+
+## How It Works
 
 Here’s the overall flow of how the RAG pipeline runs:
 
@@ -61,7 +67,7 @@ Here’s the overall flow of how the RAG pipeline runs:
 
 ---
 
-##  Tech Stack Overview  
+## Tech Stack Overview
 
 | Layer | Tool / Library |
 |-------|----------------|
@@ -75,13 +81,16 @@ Here’s the overall flow of how the RAG pipeline runs:
 | **Language** | Python 3.10+ |
 
 ---
+
 ## Conclusion
 
-- AskMyPDF RAGBOT bridges the gap between static PDFs and interactive knowledge retrieval.
-It transforms the way users interact with documents — replacing manual scrolling and searching with intelligent, conversational exploration.
+- **Gen AI RAG Chat Bot using Local Documents** bridges the gap between static PDFs and interactive knowledge retrieval.  
+  It transforms how users interact with documents — replacing manual scrolling and searching with intelligent, conversational exploration.
 
-- This project showcases how RAG pipelines combined with LLMs can turn ordinary document reading into an AI-powered discovery experience.
-In short, it’s not just a chatbot — it’s a personal document analyst built to make complex reading effortless.
+- This task demonstrates how RAG pipelines combined with LLMs can turn ordinary document reading into an AI-powered discovery experience.  
+  In short, it’s not just a chatbot — it’s a personal document analyst built to make complex reading effortless.
+
+---
 
 ## Future Work
 
@@ -91,6 +100,4 @@ Here are some areas planned for enhancement:
 - **Memory-Based Conversations:** Maintain conversational context across multiple turns for more natural and continuous interactions.  
 - **Voice Query Support:** Integrate speech-to-text and text-to-speech functionality for hands-free querying.  
 - **Export Chat Summaries:** Allow users to save entire chat sessions as PDF or Markdown reports.  
-- **Cloud Deployment:** Deploy the chatbot on cloud platforms such as Hugging Face Spaces or Streamlit Cloud for broader accessibility.  
-
----
+- **Cloud Deployment:** Deploy the chatbot on cloud platforms such as Hugging Face Spaces or Streamlit Cloud for broader accessibility.
