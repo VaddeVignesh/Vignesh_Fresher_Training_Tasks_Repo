@@ -491,7 +491,7 @@ def generate_answer(query, embedder, reranker, retriever, groq_client):
 def main():
     # Header
   # Header
-    st.markdown('<div class="clean-title">Chat With PDF</div>', unsafe_allow_html=True)
+    st.markdown('<div class="clean-title">AskMyPdf RAGBOT</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">Intelligent document analysis powered by advanced AI</div>', unsafe_allow_html=True)
 
     # Load models
@@ -634,4 +634,5 @@ def main():
         st.rerun()
 
 if __name__ == "__main__":
+
     main()
