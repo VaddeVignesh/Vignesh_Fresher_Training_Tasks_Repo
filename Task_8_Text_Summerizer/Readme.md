@@ -2,19 +2,20 @@
 
 ***
 
-# Smart Text Summarizer Pro
+#  Text Summarizer Task
 
 ## Overview
 
-Smart Text Summarizer Pro is a professional AI-powered multi-method text summarization tool built with Python, Streamlit, and state-of-the-art NLP transformer models. This project supports multiple input sources: plain text, PDFs, URLs, and audio. It provides extractive, abstractive, TF-IDF, and hybrid summarization methods with multilingual translation of summaries.
+Smart Text Summarizer  is a professional AI-powered multi-method text summarization tool built with Python, Streamlit, and state-of-the-art NLP transformer models. This Tool supports multiple input sources: plain text, PDFs, URLs. It provides extractive, abstractive, TF-IDF, and hybrid summarization methods with multilingual translation of summaries.
 
 ***
-
+# Task Preview
+![Task Preview](https://image2url.com/images/1762230822680-73d764ae-3008-42f2-b3a0-95ffed76c20b.png)
 ## Features
 
 - **Multi-Input Support:**  
-  Summarize text from pasted input, **PDF upload**, web page URLs, and audio files (speech-to-text).
-
+  Summarize text from pasted input, **PDF upload**, web page URLs
+  
 - **Multi-Method Summarization:**  
   - *Extractive:* TextRank-based ranking of key sentences  
   - *TF-IDF:* Keyword density sentence selection  
@@ -48,7 +49,7 @@ Smart Text Summarizer Pro is a professional AI-powered multi-method text summari
 - **NetworkX**: TextRank graph construction for extractive summarization.  
 - **Scikit-learn**: TF-IDF vectorization for keyword based extractive summaries.  
 - **PDFMiner / PyPDF2 / newspaper / Trafilatura**: For PDF and URL content extraction.  
-- **SpeechRecognition / PyDub (optional)**: For audio transcription integration.
+
 
 ***
 
@@ -86,7 +87,7 @@ Smart Text Summarizer Pro is a professional AI-powered multi-method text summari
 
 ## Usage
 
-- Choose input source: Text, PDF, URL, or Audio.  
+- Choose input source: Text, PDF, URL.
 - Select summarization style (Brief, Moderate, Detailed).  
 - Select translation language if desired.  
 - Select summarization method (Extractive, Abstractive, Hybrid, TF-IDF).  
@@ -114,11 +115,3 @@ Smart Text Summarizer Pro is a professional AI-powered multi-method text summari
 - UI can be improved with better progress indicators and error handling messages.
 
 ***
-
-## Contact
-
-Developed by [Your Name] — reach out for bug reports or feature requests.
-
-***
-
-Let me know if you want me to generate the matching full updated `app.py` or any other files next! 
