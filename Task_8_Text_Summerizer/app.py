@@ -1,68 +1,84 @@
 import streamlit as st
-import summarizer
-import evaluator
-import utils
 from datetime import datetime
-import os
+import summarizer, evaluator, utils
 from dotenv import load_dotenv
 
 load_dotenv()
 st.set_page_config(page_title="Smart Text Summarizer Pro", page_icon="✨", layout="wide")
 
+# --- Custom CSS ---
 st.markdown("""
 <style>
-body, .stApp {background: #151515; color: #ededed; font-family: 'Inter', sans-serif;}
-header, .st-emotion-cache-18ni7ap {background: #151515 !important; box-shadow: none !important;}
-section[data-testid="stSidebar"] {background: #141414 !important; color: #e0e0e0;}
-.block-container {padding-top: 24px; padding-left: 32px; padding-right: 32px;}
-.card-block {background: #212121; border-radius:16px; padding:22px 26px 26px 26px; margin-bottom:18px; box-shadow: 0 2px 9px #10101055;}
-.top-controls {display: flex; gap:2rem; margin-bottom:0.1rem;}
-.stTabs [data-baseweb="tab-list"] {background: #17171a!important; border-radius: 18px; padding-left: 8px!important; box-shadow: 0 1px 8px #11111333!important; margin-bottom: 0.2rem!important;}
-.stTabs [data-baseweb="tab-list"] button {background: #18181b!important; color: #bcbaca!important; border-radius: 14px 14px 0 0!important; font-weight: 600!important; border: none!important; margin-right: 3px!important; padding: .6rem 2.2rem !important; transition: 0.18s;}
-.stTabs [data-baseweb="tab-list"] button[aria-selected="true"]{background: linear-gradient(90deg,#212124,#1e1e22 99%)!important; color: #fff!important; font-weight: 700!important; box-shadow: 0 3px 8px #19191d38; border-bottom: 2.5px solid #ff552b !important;}
-.stTabs [data-baseweb="tab-list"] button:active {outline:none;}
-.stTabs [data-baseweb="tab-panel"] {background: #19191b !important; border-radius: 0 0 15px 15px; padding-top: 0.7rem; border-top: none; margin-bottom:3px;}
-.stTextArea textarea, .stTextInput input, .stSelectbox, .stFileUploader {background-color: #18181b !important; color: #ededed !important; border-radius: 11px !important; border: 2px solid #222222 !important; font-size: 16px !important;}
-.stTextArea textarea:focus, .stTextInput input:focus, .stSelectbox:focus, .stFileUploader:focus {border-color: #444 !important;}
-.stButton>button {background: #232323; border-radius: 9px !important; color: #ffe6d6 !important; font-size: 16px !important; border: 1.2px solid #202020 !important; box-shadow: 0 1px 3px #08080866; transition: 0.15s;}
-.stButton>button:hover {background: #272828; color: #fff !important; border-color: #ff552b !important;}
-.stMetric {background: #19191a !important; border-radius: 10px !important; color: #eddcbe !important; font-weight: 600;}
-.stExpander {background: #202020 !important; border-radius: 10px !important;}
-[data-baseweb="tab-panel"] > div {margin-top: -7px !important;}
-.stRadio [role="radiogroup"] {flex-direction: row;}
-.stRadio label {background: #222226; border-radius: 18px; padding: .56rem 1.38rem; margin-right: 7px; font-weight: 500; font-size: 15.3px; border:1px solid transparent; transition:0.16s;}
-.stRadio label[data-selected="true"]{background: linear-gradient(90deg,#2e2530 70%,#24282e 100%); color:#fff; border: 1.8px solid #ff552b;}
-.stRadio label:hover {background: #24252e;}
-.stTabs, .stTabs [data-baseweb="tab-panel"] > div {margin-bottom: 0!important;}
+body, .stApp, .block-container {
+    background: #202020 !important; color: #ededed !important;
+}
+section[data-testid="stSidebar"],
+.st-emotion-cache-1r6slb0, .st-emotion-cache-6qob1r,
+.st-emotion-cache-ocqkz7, .st-emotion-cache-1v0mbdj,
+.st-emotion-cache-ul70rt, [data-testid="stSidebarNav"] ul,
+.st-emotion-cache-12ttj6m {
+    background: #181818 !important;
+    color: #ededed !important;
+}
+[data-testid="stSidebarNav"] li:hover, .st-emotion-cache-ocqkz7:hover {
+    background: #282828 !important;
+    color: #fff !important;
+    border-left: 3px solid #ff552b;
+}
+.st-emotion-cache-10trblm, .st-emotion-cache-1n76uvr, h1, h2, h3, h4 { color: #fff !important; }
+.stTabs [data-baseweb="tab-list"], .stTabs [data-baseweb="tab-list"] button {
+    background: #202020 !important;
+    color: #ddd !important;
+    box-shadow:none;
+}
+.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+    background: #232323 !important;
+    color: #fff !important;
+    border-bottom:3px solid #ff552b;
+}
+.stTabs [data-baseweb="tab-panel"] {
+    background: #202020 !important;
+}
+.stButton>button, .stSelectbox, .stDropdown, .stRadio label, .stMultiSelect {
+    background: #232323 !important;
+    color: #ededed !important;
+    border-radius: 13px !important;
+    border:none !important;
+    font-weight:500;
+}
+.stTextArea textarea, .stTextInput input, .stFileUploader {
+    background: #262626 !important;
+    color: #ededed !important;
+    border-radius: 11px !important;
+    border: 1.5px solid #232323 !important;
+}
 </style>
 """, unsafe_allow_html=True)
+# ---
 
 if 'history' not in st.session_state:
     st.session_state.history = []
 
 with st.sidebar:
-    st.title("🎯 Navigation")
-    page = st.radio("Select:", ["📝 Summarize", "📚 History", "⚙️ Settings"])
+    st.markdown("<span style='font-size:2rem; font-weight:800; color:#fff;'>🎯 Navigation</span>", unsafe_allow_html=True)
+    page = st.radio("Select:", ["📝 Summarize", "📚 History", "ℹ️ About"], key="sidebar-nav")
 
 st.markdown('<h1> Smart Text Summarizer </h1>', unsafe_allow_html=True)
 st.write('<i>Professional AI-Powered Multi-Method Summarization</i>', unsafe_allow_html=True)
 
 if page == "📝 Summarize":
-    st.markdown('<div class="card-block">', unsafe_allow_html=True)
-    col1, col2 = st.columns([2,3])
-    with col1:
-        summary_style = st.selectbox("Style", ["Brief", "Moderate", "Detailed"], index=0)
-    with col2:
-        translate_lang = st.radio("Translate to", ["None", "Hindi", "Tamil", "Telugu"], horizontal=True)
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('<div style="margin-top:15px;"></div>', unsafe_allow_html=True)
+    tabs = st.tabs(["📄 Text", "📎 PDF", "🌐 URL"])  # AUDIO TAB REMOVED
 
-    st.markdown('<div class="card-block">', unsafe_allow_html=True)
-    tabs = st.tabs(["📄 Text", "📎 PDF", "🌐 URL", "🎵 Audio"])
     input_text = ""
     source_info = ""
+    extracted_word_count = None
+
     with tabs[0]:
         input_text = st.text_area("Paste your text here:", height=240, label_visibility="collapsed")
         source_info = "Text Input"
+        if input_text:
+            extracted_word_count = len(input_text.split())
     with tabs[1]:
         pdf_file = st.file_uploader("Upload PDF", type="pdf", label_visibility="collapsed")
         if pdf_file:
@@ -70,7 +86,7 @@ if page == "📝 Summarize":
                 input_text = utils.extract_text_from_pdf(pdf_file)
                 source_info = f"PDF: {pdf_file.name}"
                 if not input_text.startswith("Error"):
-                    st.success(f"✅ {len(input_text.split())} words extracted")
+                    extracted_word_count = len(input_text.split())
     with tabs[2]:
         url = st.text_input("Enter URL:", label_visibility="collapsed")
         if url:
@@ -83,24 +99,22 @@ if page == "📝 Summarize":
                     else:
                         input_text = url_text
                         source_info = f"URL: {url}"
-                        st.success(f"✅ {len(input_text.split())} words extracted")
+                        extracted_word_count = len(input_text.split())
             else:
                 st.warning("Invalid URL. Please enter a valid http/https address.")
-    with tabs[3]:
-        audio_file = st.file_uploader("Upload Audio (MP3, WAV)", type=["mp3", "wav"], label_visibility="collapsed")
-        if audio_file:
-            with st.spinner("🎙️ Transcribing..."):
-                input_text = utils.extract_audio_transcript(audio_file)
-                source_info = f"Audio: {audio_file.name}"
-                if not input_text.startswith("Error") and not input_text.startswith("Could"):
-                    st.success(f"✅ {len(input_text.split())} words transcribed")
-                else:
-                    st.warning(input_text)
-                    input_text = ""
-    st.markdown('</div>', unsafe_allow_html=True)
+
+    # Controls row under tabs: Style left, Translate right
+    colA, colB, colSpacer, colC = st.columns([1.4, 0.1, 6, 2])
+    with colA:
+        summary_style = st.selectbox("Style", ["Brief", "Moderate", "Detailed"], index=0)
+    with colC:
+        translate_lang = st.selectbox("Translate to", ["None", "Hindi", "Tamil", "Telugu"])
+
+    if extracted_word_count:
+        st.info(f"{extracted_word_count} words extracted 🟢")
 
     if input_text.strip() and not input_text.startswith("Error"):
-        st.markdown('<div class="card-block">', unsafe_allow_html=True)
+        st.markdown('<div style="margin-top:20px;"></div>', unsafe_allow_html=True)
         summary_type = st.selectbox("Method:", ["Extractive", "Abstractive", "Hybrid", "TF-IDF"])
         if st.button("🚀 SUMMARIZE", use_container_width=True):
             with st.spinner("Generating..."):
@@ -112,50 +126,58 @@ if page == "📝 Summarize":
                     elif summary_type == "TF-IDF":
                         summary_text, _ = summarizer.tfidf_summary(input_text, num)
                     elif summary_type == "Abstractive":
-                        summary_text = summarizer.abstractive_summary(input_text, summary_style.lower())
+                        summary_text = summarizer.advanced_abstractive_summary(input_text)
                     else:
                         summary_text = summarizer.hybrid_summary(input_text, num)
+
                     if translate_lang != "None":
                         summary_text = summarizer.translate_summary(summary_text, translate_lang)
-                    st.markdown('<div class="card-block">', unsafe_allow_html=True)
+                    
                     st.subheader("📋 Summary")
                     st.write(summary_text)
-                    st.markdown('</div>', unsafe_allow_html=True)
                     compression = evaluator.calculate_compression_ratio(input_text, summary_text)
                     reading_time = evaluator.calculate_reading_time(summary_text)
-                    col1, col2, col3, col4 = st.columns(4)
+                    col1, col2, col3 = st.columns(3)
                     col1.metric("Compression", f"{compression}%")
                     col2.metric("Original", len(input_text.split()))
                     col3.metric("Summary", len(summary_text.split()))
-                    col4.metric("Read Time", f"{reading_time}m")
                     st.session_state.history.append({
                         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
                         "source": source_info,
                         "method": summary_type,
-                        "summary": summary_text[:300]
+                        "summary": summary_text[:350]
                     })
                     st.success("✅ Saved to history!")
                 except Exception as e:
                     st.error(f"Error: {e}")
-        st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "📚 History":
-    st.markdown('<div class="card-block">', unsafe_allow_html=True)
     st.subheader("History")
     for item in reversed(st.session_state.history):
         with st.expander(f"{item['timestamp']} | {item['source']}"):
             st.write(item['summary'])
-    st.markdown('</div>', unsafe_allow_html=True)
 
-elif page == "⚙️ Settings":
-    st.markdown('<div class="card-block">', unsafe_allow_html=True)
-    st.subheader("Features")
-    st.write("✅ Text, PDF, URL, Audio input")
-    st.write("✅ Extractive (TextRank), TF-IDF, Abstractive, Hybrid methods")
-    st.write("✅ Analytics & metrics")
-    st.write("✅ Translation: Hindi, Tamil, Telugu")
-    st.write("✅ History tracking")
-    st.markdown('</div>', unsafe_allow_html=True)
+elif page == "ℹ️ About":
+    st.subheader("About Smart Text Summarizer Pro")
+    st.markdown("""
+<div style="padding:18px 22px 12px 8px; background:#181818; border-radius:9px;">
+<b>Smart Text Summarizer Pro</b> is an advanced, AI-powered summarization suite for busy professionals, students, analysts, and teams.
+<ul style="margin-top:18px;">
+<li><b>✨ Multi-Source Input</b>: Summarize from raw text, PDF documents, and web URLs—just copy, upload, or paste!</li>
+<li><b>🧠 Multiple Summarization Methods</b>: Choose from <b>Extractive (TextRank), Abstractive (LLM/GPT), TF-IDF, or Hybrid</b> for best results.</li>
+<li><b>📝 Structured, Readable Output</b>: Results are always neat, with clear bullet points, clean formatting, and optional detail control.</li>
+<li><b>🌏 Multilingual Support</b>: Instantly translate your summary into <b>Hindi, Tamil, or Telugu</b> (or keep in English)—perfect for local and regional projects.</li>
+<li><b>⚡ Fast, Reliable, and Efficient</b>: Blazing performance using distilled transformer models and robust fallback logic—no crashes or long waits!</li>
+<li><b>📊 Built-in Metrics</b>: Instant feedback on compression ratio, summary word count, and estimated reading time for every summary.</li>
+<li><b>🕓 Secure Local Processing</b>: Your content stays on your machine; no third-party server uploads or sharing.</li>
+<li><b>🖤 Beautiful, Distraction-Free UI</b>: Custom dark-mode interface with pro-level sidebar, minimalist controls, and focus on readability and speed.</li>
+</ul>
+<div style="margin-top:12px;">
+Want to learn more or contribute ideas? <b>Contact the team at [Your Contact/Repo]</b>
+</div>
+</div>
+""", unsafe_allow_html=True)
 
-st.write("<div style='margin-top:50px;'></div>", unsafe_allow_html=True)
+
+st.write("<div style='margin-top:35px;'></div>", unsafe_allow_html=True)
 st.write("<div style='color:#878787;font-size:13px;text-align:center;opacity:.8;'>Made with ❤️ | Smart Summarization Pro</div>", unsafe_allow_html=True)
