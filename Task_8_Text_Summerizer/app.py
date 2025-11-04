@@ -172,8 +172,7 @@ elif page == "ℹ️ About":
 <li><b>🕓 Secure Local Processing</b>: Your content stays on your machine; no third-party server uploads or sharing.</li>
 <li><b>🖤 Beautiful, Distraction-Free UI</b>: Custom dark-mode interface with pro-level sidebar, minimalist controls, and focus on readability and speed.</li>
 </ul>
-<div style="margin-top:12px;">
-Want to learn more or contribute ideas? <b>Contact the team at [Your Contact/Repo]</b>
+
 </div>
 </div>
 """, unsafe_allow_html=True)
