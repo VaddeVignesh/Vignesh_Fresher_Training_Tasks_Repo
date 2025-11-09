@@ -108,8 +108,8 @@ Navigate to **Analytics** page to see:
 
 ### Step 1: Clone Repository
 ```
-git clone https://github.com/yourusername/qa_bot_openai_vs_llama3.git
-cd qa_bot_openai_vs_llama3
+git clone https://github.com/VaddeVignesh/Vignesh_Fresher_Training_Tasks_Repo/tree/main/Task_10_Q%26A_Bot_using_OpenAI_Vs_LLaMA3
+cd Task_10_Q&A_Bot_using_OpenAI_Vs_LLaMA3
 ```
 
 ### Step 2: Install Dependencies
